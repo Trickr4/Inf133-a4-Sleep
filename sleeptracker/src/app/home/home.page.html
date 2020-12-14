@@ -1,14 +1,42 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Home Overview
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-list>
+    <ion-list-header>Log List</ion-list-header>
+    <ion-item>
+      <ion-label>Overnight Logs</ion-label>
+      <ion-badge slot="end" >{{allOvernightData.length}}</ion-badge>
+    </ion-item>
+    <ion-item *ngIf = "allOvernightData.length > 0">
+    <ion-text color="primary">
+      <p>Last logged: {{allOvernightData[allOvernightData.length-1].loggedAt}}</p>
+    </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sleepiness Log</ion-label>
+      <ion-badge color="secondary" slot="end">{{allSleepinessData.length}}</ion-badge>
+    </ion-item>
+    <ion-item *ngIf = "allSleepinessData.length > 0">
+      <ion-text color="secondary">
+        <p>Last logged: {{allSleepinessData[allSleepinessData.length-1].loggedAt}}</p>
+      </ion-text>
+      </ion-item>
+    <ion-item>
+      <ion-label>Total Logs</ion-label>
+      <ion-badge color="tertiary" slot="end">{{allSleepData.length}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar>
+      <ion-button color="secondary" (click)= "dataLog()" href="/log-history">View Logs</ion-button>
+      <ion-button color="secondary" *ngIf = "!hideclear" (click)= "promptClear()" slot="end">Clear Data</ion-button>
+      <ion-button color="success" *ngIf = "!hideYes" (click)= "clearData()" slot="end">Yes</ion-button>
+      <ion-button color="danger" *ngIf = "!hideNo" (click)= "promptClear()" slot="end">No</ion-button>
+  </ion-toolbar>
+  
 </ion-content>

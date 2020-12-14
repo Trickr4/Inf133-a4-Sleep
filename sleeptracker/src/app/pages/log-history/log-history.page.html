@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>log_history</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngIf = "logOvernight == true">
+    <ion-item  *ngFor="let data of allOvernightData.reverse();let i = index;let isFirst = first;">
+      <ion-label>
+        <h2>{{data.loggedAt}}</h2>
+        <h4>Sleep Start: {{data.sleepStart}}</h4>
+        <h4>Sleep End: {{data.sleepEnd}}</h4>
+      </ion-label>
+    </ion-item>
+    </div>
+    <div *ngIf = "logSleepiness == true">
+      <ion-item  *ngFor="let data of allSleepinessData.reverse();let i = index;let isFirst = first;">
+        <ion-label>
+          <h2>{{data.loggedAt}}</h2>
+          <h4>Log value: {{scaleValue[data.loggedValue+1]}}</h4>
+          <h4>Log value: {{data.loggedValue+1}}</h4>
+        </ion-label>
+      </ion-item>
+    </div>
+    <div *ngIf = "logAll == true">
+      <ion-item  *ngFor="let data of allSleepData.reverse();let i = index;let isFirst = first;">
+        <ion-label *ngIf = "data.sleepStart != null">
+          <h2>{{data.loggedAt}}</h2>
+          <h4>Sleep Start: {{data.sleepStart}}</h4>
+          <h4>Sleep End: {{data.sleepEnd}}</h4>
+        </ion-label>
+        <ion-label *ngIf = "data.loggedValue != null">
+          <h2>{{data.loggedAt}}</h2>
+          <h4>Log value: {{scaleValue[data.loggedValue+1]}}</h4>
+          <h4>Log value: {{data.loggedValue+1}}</h4>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

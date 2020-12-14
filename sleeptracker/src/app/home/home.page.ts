@@ -10,18 +10,52 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+	hideclear:boolean = false;
+	hideYes:boolean = true;
+	hideNo:boolean = true;
   constructor(public sleepService:SleepService) {
 
 	}
 
 	ngOnInit() {
-		console.log(this.allSleepData);
 	}
 
 	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
 	get allSleepData() {
 		return SleepService.AllSleepData;
+	}
+
+	get allOvernightData() {
+		return SleepService.AllOvernightData;
+	}
+
+	get allSleepinessData() {
+		return SleepService.AllSleepinessData;
+	}
+
+	dataLog(){
+		this.sleepService.All(true);
+	  }
+	
+
+	clearData(){
+		this.sleepService.clearData();
+		window.location.reload();
+	}
+
+	promptClear(){
+		if(!this.hideclear)
+		{
+			this.hideclear = true;
+			this.hideYes = false;
+			this.hideNo = false;
+		}
+		else
+		{
+			this.hideclear = false;
+			this.hideYes = true;
+			this.hideNo = true;
+		}
 	}
 
 }

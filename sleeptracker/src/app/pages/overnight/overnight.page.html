@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Overnight</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Start Time</ion-label>
+    <ion-datetime [(ngModel)] = "startTime" displayFormat="HH:mm:ss"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>End Time</ion-label>
+    <ion-datetime [(ngModel)] = "endTime" displayFormat="HH:mm:ss"></ion-datetime>
+  </ion-item>
+  <ion-toolbar>
+    <ion-button color="secondary" (click)= "logInfo()">Log</ion-button>
+    <ion-button color="secondary" (click)= "dataLog()" href="/log-history" slot="end">View Logs</ion-button>
+  </ion-toolbar>
+  <ion-label color="danger">{{errmsg}}</ion-label>
+  <ion-label color="success">{{donemsg}}</ion-label>
+</ion-content>
